@@ -1,4 +1,4 @@
-# Issue Tracker — ZIP
+# Issue Tracker 
 
 This archive contains:
 - backend/ : FastAPI backend (sqlite)
