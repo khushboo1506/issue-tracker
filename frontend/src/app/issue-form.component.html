@@ -1,0 +1,21 @@
+<form (ngSubmit)="save()">
+  <label>Title</label>
+  <input [(ngModel)]="model.title" name="title" required />
+  <label>Description</label>
+  <textarea [(ngModel)]="model.description" name="description"></textarea>
+  <label>Status</label>
+  <select [(ngModel)]="model.status" name="status">
+    <option value="open">Open</option>
+    <option value="in_progress">In Progress</option>
+    <option value="closed">Closed</option>
+  </select>
+  <label>Priority</label>
+  <select [(ngModel)]="model.priority" name="priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+  <label>Assignee</label>
+  <input [(ngModel)]="model.assignee" name="assignee" />
+  <button type="submit">Save</button>
+</form>

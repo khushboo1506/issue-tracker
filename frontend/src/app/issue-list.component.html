@@ -1,0 +1,52 @@
+<div>
+  <div style="margin-bottom:12px">
+    <input placeholder="Search title..." [(ngModel)]="q" />
+    <select [(ngModel)]="status">
+      <option value="">All status</option>
+      <option value="open">Open</option>
+      <option value="in_progress">In Progress</option>
+      <option value="closed">Closed</option>
+    </select>
+    <select [(ngModel)]="priority">
+      <option value="">All priority</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <input placeholder="Assignee" [(ngModel)]="assignee" />
+    <button (click)="onSearch()">Search</button>
+    <button (click)="onClearFilters()">Clear</button>
+    <button (click)="window.location.href='/issues/new'">Create Issue</button>
+  </div>
+
+  <table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+      <tr>
+        <th (click)="sort_by='id'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">ID</th>
+        <th (click)="sort_by='title'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">Title</th>
+        <th (click)="sort_by='status'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">Status</th>
+        <th (click)="sort_by='priority'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">Priority</th>
+        <th (click)="sort_by='assignee'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">Assignee</th>
+        <th (click)="sort_by='updated_at'; sort_dir = sort_dir==='desc'?'asc':'desc'; load()">Updated At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let issue of issues" (click)="rowClicked(issue)">
+        <td>{{issue.id}}</td>
+        <td>{{issue.title}}</td>
+        <td>{{issue.status}}</td>
+        <td>{{issue.priority}}</td>
+        <td>{{issue.assignee}}</td>
+        <td>{{issue.updated_at | date:'short'}}</td>
+        <td><button (click)="edit(issue, $event)">Edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:12px">
+    <button (click)="page = Math.max(1, page-1); load()">Prev</button>
+    <span>Page {{page}}</span>
+    <button (click)="page = page+1; load()">Next</button>
+  </div>
+</div>
